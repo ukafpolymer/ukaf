@@ -10,12 +10,28 @@
     </style>
   </head>
   <body>
-    <body>
-  <header style="text-align:center; padding:40px;">
-    <img src="img/Ukaf_mavi1.png" alt="UKAF Polymer Logo" width="300">
-    <h1>UKAF Polymer</h1>
-    <p>Advanced Polymer Solutions</p>
-  </header>
+   <body style="text-align:center; font-family:Arial, sans-serif;">
+  <h1>Logo Testi</h1>
+  <img id="logo" src="img/Ukaf_mavi1.png" alt="UKAF Logo" width="280">
+  <br><br>
+  <button onclick="changeLogo()">Logoyu Değiştir</button>
+
+  <script>
+    const logos = [
+      "img/Ukaf_mavi1.png",
+      "img/Ukaf_Mavi2.png",
+      "img/Ukaf_Mavi3.png",
+      "img/Ukaf_Siyah.png",
+      "img/Ukaf_Siyah2.png"
+    ];
+    let index = 0;
+    function changeLogo() {
+      index = (index + 1) % logos.length;
+      document.getElementById("logo").src = logos[index];
+    }
+  </script>
+</body>
+
 </body>
 
 

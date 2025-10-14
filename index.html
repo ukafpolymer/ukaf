@@ -1,24 +1,70 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>UKAF Polymer</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
-  <header class="topbar">
-    <img src="img/Ukaf_mavi1.png" alt="UKAF Polymer Logo" class="logo">
+  <!-- NAVBAR -->
+  <header class="nav">
+    <a class="nav__brand" href="/">
+      <img src="img/Ukaf_mavi1.png" alt="UKAF Polymer" />
+    </a>
+
+    <button class="nav__toggle" aria-label="Menüyü aç/kapat">
+      <!-- hamburger -->
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav__menu">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="nav__actions">
+      <!-- dil düğmeleri -->
+      <button class="lang" data-lang="tr" aria-label="Türkçe">TR</button>
+      <button class="lang" data-lang="en" aria-label="English">EN</button>
+      <button class="lang" data-lang="es" aria-label="Español">ES</button>
+      <!-- arama ikonu -->
+      <button class="search" aria-label="Ara" title="Search">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+          <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>Global Sourcing & Sales<br>of Chemicals and Polymers</h1>
-      <p>We Believe In Good Chemistry<br>with Our Business Partners</p>
+    <div class="hero__overlay"></div>
+    <div class="hero__inner">
+      <h1>Global Sourcing & Sales of<br/>Chemicals and Polymers</h1>
+      <p>We Believe In Good Chemistry with Our Business Partners</p>
+      <!-- istersen CTA
+      <a href="#products" class="btn">Explore Products</a>
+      -->
     </div>
   </section>
 
-  <footer class="footer-space"></footer>
+  <!-- placeholder bölümler -->
+  <section id="about" class="section">About content…</section>
+  <section id="products" class="section">Products content…</section>
+  <section id="contact" class="section">Contact content…</section>
+
+  <script>
+    // Mobil menü toggle
+    const btn = document.querySelector('.nav__toggle');
+    const menu = document.querySelector('.nav__menu');
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      menu.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>

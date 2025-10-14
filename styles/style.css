@@ -21,7 +21,7 @@ html, body { margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; 
 .hero {
   position: relative;
   height: 100vh;
-  background: url("../img/arkaplan1.png") no-repeat center center/cover;
+  background: url("../img/arkaplan.png") no-repeat center center/cover;
   background-attachment: fixed;
 }
 

@@ -256,6 +256,26 @@ body {
   }
 }
 
+/* ===== Modal ===== */
+.modal{position:fixed;inset:0;display:none;z-index:200}
+.modal.is-open{display:block}
+.modal__backdrop{position:absolute;inset:0;background:rgba(2,6,23,.55);backdrop-filter:blur(4px)}
+.modal__dialog{
+  position:relative; z-index:1; margin:6vh auto; width:min(900px,92%);
+  background:#fff; border-radius:16px; box-shadow:0 20px 60px rgba(2,6,23,.25);
+  max-height:88vh; overflow:auto;
+}
+.modal__content{padding:22px 22px 26px}
+.modal__close{
+  position:absolute; top:10px; right:12px; width:36px; height:36px; border-radius:10px;
+  border:0; background:transparent; color:#0b2240; font-size:26px; cursor:pointer;
+}
+.modal__close:hover{background:#f1f5f9}
+
+/* küçük ekran iyileştirme */
+@media (max-width: 600px){
+  .modal__dialog{margin:10vh auto; width:min(680px,94%); border-radius:14px}
+}
 
 
 

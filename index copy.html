@@ -10,7 +10,7 @@
   <!-- NAVBAR -->
   <header class="nav">
     <a class="nav__brand" href="/">
-      <img src="img/Ukaf_Siyah2.png" alt="UKAF Polymer" />
+      <img src="img/Ukaf_mavi1.png" alt="UKAF Polymer" />
     </a>
 
     <button class="nav__toggle" aria-label="Menüyü aç/kapat">
@@ -19,15 +19,16 @@
 
     <nav class="nav__menu">
       <a href="#">Home</a>
-      <a href="#about">About</a>
+      <a href="#about">About Us</a>
       <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact">Contact.</a>
     </nav>
 
     <div class="nav__actions">
-      <button class="lang" data-lang="tr" aria-label="Türkçe">TR</button>
+     
       <button class="lang" data-lang="en" aria-label="English">EN</button>
-      <button class="lang" data-lang="es" aria-label="Español">ES</button>
+      <button class="lang" data-lang="es" aria-label="Español">FR</button>
+      <button class="lang" data-lang="tr" aria-label="Türkçe">TR</button>
       <button class="search" aria-label="Ara" title="Search">
         <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
           <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -39,31 +40,64 @@
 
   
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero__overlay"></div>
-    <div class="hero__inner">
-      <h1>Supplying Good Chemistry,<br/>Building Great Partnerships</h1>
-      <p>We Believe In Good Chemistry with Our Business Partners</p>
-    </div>
-  </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__overlay"></div>
+  <div class="hero__inner">
+    <h1>
+      <span class="blue-text">
+        Supplying Good Chemistry,<br/>
+        Building Great Partnerships
+      </span>
+    </h1>
+
+    <p class="fancy-text">
+  <span class="styled">Uniting</span>
+  <span class="styled">Knowledge</span>
+  <span class="plain">&</span>
+  <span class="styled">Advanced</span>
+  <span class="styled">Formulations.</span>
+</p>
+  </div>
+</section>
 
   <script>
-    // Mobil menü toggle
-    const btn = document.querySelector('.nav__toggle');
-    const menu = document.querySelector('.nav__menu');
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('active');
-      menu.classList.toggle('open');
-    });
-  </script>
+  const btn = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('.nav__menu');
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('active', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+</script>
+
 
 <!-- FOOTER BAR -->
 <footer class="footerbar">
   <div class="footerbar__info">
-    <span>SG1 4PP Stevenage, Hertfordshire, UK</span>
-    <span>Tel: +44 xxx xxx xxxx</span>
-    <a href="mailto:info@ukafpolymer.co.uk">info@ukafpolymer.co.uk</a>
+    <span class="footer-item">
+      <!-- konum ikonu -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z"/>
+      </svg>
+      SG1 4PP Stevenage, Hertfordshire, UK
+    </span>
+
+    <span class="footer-item">
+      <!-- telefon ikonu -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21 11.36 11.36 0 003.55.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.21 1.11z"/>
+      </svg>
+      +44 xxx xxx xxxx
+    </span>
+
+    <span class="footer-item">
+      <!-- e-posta ikonu -->
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/>
+      </svg>
+      <a href="mailto:info@ukafpolymer.co.uk">info@ukafpolymer.co.uk</a>
+    </span>
   </div>
 
   <div class="footerbar__social">

@@ -84,7 +84,11 @@ body {
   margin: 0 0 14px; font-weight: 800; line-height: 1.15;
   font-size: clamp(28px, 4.6vw, 56px);
   text-shadow: 0 2px 22px rgba(0,0,0,.14);
+  }
+  .hero__inner .blue-text {
+  color: #0a4aa6;        /* UKAF mavisi */
 }
+
 .hero__inner p { margin: 0; font-size: clamp(16px, 2.2vw, 22px); opacity: .92; }
 .btn{
   display:inline-block; margin-top:22px; padding:12px 18px; border-radius:999px;

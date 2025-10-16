@@ -24,10 +24,10 @@ body {
 /* Logo bar dışına taşabilir; bar yüksekliği sabit kalır */
 .nav__brand { position: relative; z-index: 11; overflow: visible; }
 .nav__brand img {
-  height: 120px;
+  height: 135px;
   width: auto;
   display: block;
-  transform: translateY(10px);
+  transform: translateY(60px);
 }
 
 .nav__menu {

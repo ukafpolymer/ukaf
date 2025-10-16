@@ -101,20 +101,67 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px 0 20px; /* üst bar ile birebir */
-  background: rgba(255,255,255,0.75); /* aynı ton */
+  background: rgba(255,255,255,0.75);
   backdrop-filter: blur(8px);
   border-top: 1px solid rgba(0,0,0,0.06);
   color: #0b2240;
-  font-size: 13px;         /* üst bardakiyle orantılı */
-  line-height: 1;          /* satır aralığını kısalt */
+  font-size: 13px;
+  line-height: 1;
 }
 
-.footerbar__info { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
-.footerbar__info a { color: #0b2240; text-decoration: none; font-weight: 600; }
-.footerbar__info a:hover { text-decoration: underline; }
-.footerbar__social { display: flex; align-items: center; gap: 16px; }
-.footerbar__social img { width: 22px; height: 22px; filter: grayscale(100%) brightness(0.2); transition: filter .2s; }
-.footerbar__social img:hover { filter: none; }
+.footerbar__info {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.footerbar__info a {
+  color: #0b2240;
+  text-decoration: none;
+  font-weight: 600;
+}
+.footerbar__info a:hover {
+  text-decoration: underline;
+}
+
+/* ---- sosyal ikonlar ---- */
+.footerbar__social {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* inline SVG'ler için renk ve hover efekti */
+.footerbar__social svg {
+  width: 22px;
+  height: 22px;
+  color: #0b2240;       /* varsayılan koyu lacivert */
+  opacity: 0.7;
+  transition: color .2s ease, opacity .2s ease;
+}
+
+.footerbar__social svg:hover {
+  color: #0a4aa6;       /* UKAF mavi hover */
+  opacity: 1;
+}
+
+/* Mobil görünüm */
+@media (max-width: 900px) {
+  .footerbar {
+    flex-direction: column;
+    gap: 8px;
+    height: auto;
+    padding: 10px 16px;
+  }
+  .footerbar__info {
+    justify-content: center;
+    text-align: center;
+  }
+  .footerbar__social {
+    justify-content: center;
+  }
+}
+
 
 /* ========== Mobil ========== */
 @media (max-width: 900px){

@@ -170,14 +170,25 @@ body {
 /* ========== Mobil ========== */
 @media (max-width: 900px){
   .nav__toggle { display:block; }
+
+  /* AÇILAN MENÜ: logonun üstünde, tam genişlik, kaydırılabilir */
   .nav__menu {
-    position: absolute; top:60px; left:0; right:0; display:none;
-    flex-direction: column; gap: 0;
-    background: rgba(255,255,255,0.96);
+    position: fixed;          /* absolute yerine fixed */
+    top: 60px;                /* üst barın hemen altı */
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(255,255,255,0.98);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(0,0,0,.06);
+    z-index: 50;              /* logodan daha yukarıda */
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;         /* menü uzun olursa kayabilsin */
   }
-  .nav__menu a { padding: 14px 20px; }
+  .nav__menu a { padding: 16px 20px; }
   .nav__menu.open { display:flex; }
+
   .hero { background-position: center; }
 }

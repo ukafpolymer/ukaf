@@ -183,7 +183,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 100px 24px 60px;   /* <── üstte 100px boşluk ekledik */
+    padding: 10px 24px 60px;   /* <── üstte 100px boşluk ekledik */
     gap: 22px;                  /* linkler arası dikey mesafe */
     border-left: 1px solid rgba(0,0,0,0.06);
     box-shadow: -4px 0 20px rgba(0,0,0,0.1);

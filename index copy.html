@@ -21,7 +21,7 @@
       <a href="#">Home</a>
       <a href="#" data-modal="about">About Us</a>
       <a href="#products">Products</a>
-      <a href="#contact">Contact.</a>
+      <a href="#" data-modal="contact">Contact</a>
     </nav>
 
     <div class="nav__actions">
@@ -82,35 +82,39 @@
 </script>
 
 <script>
-  // hamburger kodun kalabilir; bunun altına ekle
+  // … hamburger kodun …
+
   const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modal-content');
   const btnClose = modal.querySelector('.modal__close');
 
-  // About linkine tıklandığında modal aç ve about.html'i yükle
-  document.querySelectorAll('[data-modal="about"]').forEach(a => {
-    a.addEventListener('click', async (e) => {
-      e.preventDefault();
-      try {
-        const res = await fetch('about.html', { cache: 'no-store' });
-        const html = await res.text();
-        modalContent.innerHTML = html;     // içeriği modal içine bas
-        openModal();
-      } catch(err){
-        modalContent.innerHTML = '<p style="padding:20px">Could not load About page.</p>';
-        openModal();
-      }
+  // Tek fonksiyon: about/contact gibi dataset.modal değerine göre dosya yükler
+  function attachModalTriggers() {
+    document.querySelectorAll('[data-modal]').forEach(a => {
+      a.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const id = a.dataset.modal;            // "about" veya "contact"
+        try {
+          const res = await fetch(`${id}.html`, { cache: 'no-store' });
+          const html = await res.text();
+          modalContent.innerHTML = html;
+          openModal();
+        } catch (err) {
+          modalContent.innerHTML = `<div style="padding:20px">Could not load <b>${id}</b> page.</div>`;
+          openModal();
+        }
+      });
     });
-  });
+  }
 
   function openModal(){
     modal.classList.add('is-open');
-    document.body.classList.add('menu-open'); // scroll kilidi
+    document.body.classList.add('menu-open');   // arka kaydırmayı kilitle
   }
   function closeModal(){
     modal.classList.remove('is-open');
     document.body.classList.remove('menu-open');
-    modalContent.innerHTML = ''; // boşalt (isteğe bağlı)
+    modalContent.innerHTML = '';
   }
 
   btnClose.addEventListener('click', closeModal);
@@ -118,7 +122,11 @@
     if(e.target.classList.contains('modal__backdrop')) closeModal();
   });
   window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+  // Sayfa hazırken bağla
+  attachModalTriggers();
 </script>
+
 
 
 

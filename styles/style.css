@@ -173,22 +173,6 @@ body {
 }
 
 
-/* Mobil görünüm */
-@media (max-width: 900px) {
-  .footerbar {
-    flex-direction: column;
-    gap: 8px;
-    height: auto;
-    padding: 10px 16px;
-  }
-  .footerbar__info {
-    justify-content: center;
-    text-align: center;
-  }
-  .footerbar__social {
-    justify-content: center;
-  }
-}
 
 /* ========== Mobil ========== */
 @media (max-width: 900px){

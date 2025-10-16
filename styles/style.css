@@ -211,6 +211,47 @@ body {
 
   body.menu-open { overflow: hidden; }
 }
+/* === Mobile footer düzeni === */
+@media (max-width: 600px){
+  .footerbar{
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: auto;                          /* sabit 60px yerine oto */
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom)) 14px;
+    display: flex;
+    flex-direction: column;                /* üst: bilgiler, alt: sosyal */
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .footerbar__info{
+    display: grid;
+    grid-template-columns: 1fr;            /* tek kolon, alt alta */
+    row-gap: 6px;
+    align-items: start;
+  }
+
+  .footer-item{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.2;
+    font-size: 14px;
+    /* uzun adres taşarsa doğalca alt satıra iner */
+  }
+
+  .footerbar__social{
+    display: flex;
+    justify-content: flex-end;             /* ikonlar sağda */
+    gap: 14px;
+  }
+
+  /* hero üstten footer daha yüksek olduğu için taşma olmasın diye 
+     istersen ufakçe kısabiliriz; gerek yoksa bu bloğu kaldır. */
+  .hero{
+    height: calc(100dvh - 80px);           /* mobilde biraz kıs */
+  }
+}
 
 
 

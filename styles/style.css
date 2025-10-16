@@ -5,6 +5,7 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color: #0b2240;
   overflow: hidden; /* giriş sayfası tek ekranda */
+ 
 }
 
 /* ========== NAVBAR ========== */
@@ -71,7 +72,7 @@ body {
 
 /* ========== HERO (tam ekran ama barlar kadar kısılmış) ========== */
 .hero {
-  height: calc(100vh - 120px); /* 60px üst bar + 60px alt bar */
+  height: calc(100vh - 60px); /* 60px üst bar + 60px alt bar */
   width: 100%;
   position: relative;
   display: grid; place-items: center;
@@ -90,18 +91,24 @@ body {
   background:#0b2240; color:#fff; text-decoration:none; font-weight:700;
 }
 
-/* ===== FOOTER BAR ===== */
+/* ===== FOOTER BAR (navbar ile birebir) ===== */
 .footerbar {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9;
-  height: 60px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 28px;
-  background: rgba(255,255,255,0.85);
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 9;
+  height: 60px; /* üst bar ile aynı */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 0 20px; /* üst bar ile birebir */
+  background: rgba(255,255,255,0.75); /* aynı ton */
   backdrop-filter: blur(8px);
-  border-top: 1px solid rgba(0,0,0,0.08);
+  border-top: 1px solid rgba(0,0,0,0.06);
   color: #0b2240;
-  font-size: 14px;
+  font-size: 13px;         /* üst bardakiyle orantılı */
+  line-height: 1;          /* satır aralığını kısalt */
 }
+
 .footerbar__info { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
 .footerbar__info a { color: #0b2240; text-decoration: none; font-weight: 600; }
 .footerbar__info a:hover { text-decoration: underline; }

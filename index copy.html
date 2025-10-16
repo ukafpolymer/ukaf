@@ -19,7 +19,7 @@
 
     <nav class="nav__menu">
       <a href="#">Home</a>
-      <a href="#about">About Us</a>
+      <a href="#" data-modal="about">About Us</a>
       <a href="#products">Products</a>
       <a href="#contact">Contact.</a>
     </nav>
@@ -38,7 +38,17 @@
     </div>
   </header>
 
-  
+  <!-- MODAL (overlay) -->
+<div id="modal" class="modal" aria-hidden="true">
+  <div class="modal__backdrop"></div>
+  <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <button class="modal__close" aria-label="Close">×</button>
+    <div id="modal-content" class="modal__content">
+      <!-- about.html buraya yüklenecek -->
+    </div>
+  </div>
+</div>
+
 
 <!-- HERO -->
 <section class="hero">
@@ -70,6 +80,46 @@
     document.body.classList.toggle('menu-open', isOpen);
   });
 </script>
+
+<script>
+  // hamburger kodun kalabilir; bunun altına ekle
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modal-content');
+  const btnClose = modal.querySelector('.modal__close');
+
+  // About linkine tıklandığında modal aç ve about.html'i yükle
+  document.querySelectorAll('[data-modal="about"]').forEach(a => {
+    a.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const res = await fetch('about.html', { cache: 'no-store' });
+        const html = await res.text();
+        modalContent.innerHTML = html;     // içeriği modal içine bas
+        openModal();
+      } catch(err){
+        modalContent.innerHTML = '<p style="padding:20px">Could not load About page.</p>';
+        openModal();
+      }
+    });
+  });
+
+  function openModal(){
+    modal.classList.add('is-open');
+    document.body.classList.add('menu-open'); // scroll kilidi
+  }
+  function closeModal(){
+    modal.classList.remove('is-open');
+    document.body.classList.remove('menu-open');
+    modalContent.innerHTML = ''; // boşalt (isteğe bağlı)
+  }
+
+  btnClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if(e.target.classList.contains('modal__backdrop')) closeModal();
+  });
+  window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+</script>
+
 
 
 <!-- FOOTER BAR -->

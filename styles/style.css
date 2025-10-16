@@ -207,4 +207,14 @@ body {
     overflow: hidden;
   }
 }
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-item svg {
+  color: #0a4aa6; /* UKAF mavisi */
+  opacity: 0.8;
+}
 

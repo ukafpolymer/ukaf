@@ -4,23 +4,38 @@ html, body { margin: 0; height: 100%; }
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   color: #0b2240;
-  overflow: hidden; /* scrollbar yok, giriş sayfası tek ekranda */
+  overflow: hidden; /* giriş sayfası tek ekranda */
 }
 
 /* ========== NAVBAR ========== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 10;
-  height: 72px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 20px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px 0 20px;
   background: rgba(255,255,255,0.75);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
-.nav__brand img { height: 44px; width: auto; display: block; }
+/* Logo bar dışına taşabilir; bar yüksekliği sabit kalır */
+.nav__brand { position: relative; z-index: 11; overflow: visible; }
+.nav__brand img {
+  height: 120px;
+  width: auto;
+  display: block;
+  transform: translateY(10px);
+}
 
-.nav__menu { display: flex; gap: 24px; }
+.nav__menu {
+  display: flex;
+  gap: 16px;             /* menü yazıları yakın */
+  margin-left: auto;
+  margin-right: 36px;    /* menü ile dil düğmeleri arası mesafe */
+  justify-content: flex-end;
+}
 .nav__menu a {
   text-decoration: none; color:#0b2240; font-weight: 600; letter-spacing:.02em;
   padding: 10px 6px; border-radius: 8px;
@@ -28,13 +43,11 @@ body {
 .nav__menu a:hover { background: rgba(0,0,0,.06); }
 
 .nav__actions { display:flex; align-items:center; gap:10px; }
-
 .lang {
   border: 1px solid rgba(0,0,0,.15); background:#fff; color:#0b2240;
   padding:6px 8px; border-radius:8px; font-weight:700; font-size:12px; cursor:pointer;
 }
 .lang:hover { background:#f4f6fb; }
-
 .search {
   border:0; background:transparent; color:#0b2240; cursor:pointer;
   padding:6px; border-radius:8px;
@@ -56,45 +69,51 @@ body {
 .nav__toggle.active span:nth-child(2){ opacity:0; }
 .nav__toggle.active span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
-/* ========== HERO (tam ekran) ========== */
+/* ========== HERO (tam ekran ama barlar kadar kısılmış) ========== */
 .hero {
-  /* nav üstte sabit; hero tüm ekranı kaplar */
-  height: 100vh;
+  height: calc(100vh - 120px); /* 60px üst bar + 60px alt bar */
   width: 100%;
   position: relative;
   display: grid; place-items: center;
-  background: url('../img/arkaplan2.png') center/cover no-repeat;
-  /* arkaplan2 kullanacaksan üst satırdaki dosya adını değiştir */
+   background: url("../img/arkaplan2.png") no-repeat right center / cover;
 }
-
-.hero__overlay {
-  position:absolute; inset:0;
-  background: rgba(0,0,0,0.35); /* okunabilirlik için hafif karartma */
-}
-
-.hero__inner {
-  position: relative; z-index: 1;
-  text-align: center; color: #fff; padding: 0 20px;
-}
-
+.hero__overlay { position:absolute; inset:0; background: rgba(0,0,0,0.35); }
+.hero__inner { position: relative; z-index: 1; text-align: center; color: #fff; padding: 0 20px; }
 .hero__inner h1 {
   margin: 0 0 14px; font-weight: 800; line-height: 1.15;
   font-size: clamp(28px, 4.6vw, 56px);
   text-shadow: 0 2px 22px rgba(0,0,0,.14);
 }
-.hero__inner p {
-  margin: 0; font-size: clamp(16px, 2.2vw, 22px); opacity: .92;
-}
+.hero__inner p { margin: 0; font-size: clamp(16px, 2.2vw, 22px); opacity: .92; }
 .btn{
   display:inline-block; margin-top:22px; padding:12px 18px; border-radius:999px;
   background:#0b2240; color:#fff; text-decoration:none; font-weight:700;
 }
 
+/* ===== FOOTER BAR ===== */
+.footerbar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 9;
+  height: 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  color: #0b2240;
+  font-size: 14px;
+}
+.footerbar__info { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+.footerbar__info a { color: #0b2240; text-decoration: none; font-weight: 600; }
+.footerbar__info a:hover { text-decoration: underline; }
+.footerbar__social { display: flex; align-items: center; gap: 16px; }
+.footerbar__social img { width: 22px; height: 22px; filter: grayscale(100%) brightness(0.2); transition: filter .2s; }
+.footerbar__social img:hover { filter: none; }
+
 /* ========== Mobil ========== */
 @media (max-width: 900px){
   .nav__toggle { display:block; }
   .nav__menu {
-    position: absolute; top:72px; left:0; right:0; display:none;
+    position: absolute; top:60px; left:0; right:0; display:none;
     flex-direction: column; gap: 0;
     background: rgba(255,255,255,0.96);
     backdrop-filter: blur(8px);
@@ -102,5 +121,5 @@ body {
   }
   .nav__menu a { padding: 14px 20px; }
   .nav__menu.open { display:flex; }
-  .hero { background-position: center; } /* mobilde ortala */
+  .hero { background-position: center; }
 }

@@ -1,21 +1,26 @@
-/* Temel */
+/* ========== Temel ========== */
 * { box-sizing: border-box; }
-html, body { margin: 0; }
-body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:#0b2240; }
+html, body { margin: 0; height: 100%; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #0b2240;
+  overflow: hidden; /* scrollbar yok, giriş sayfası tek ekranda */
+}
 
-/* NAVBAR */
+/* ========== NAVBAR ========== */
 .nav {
-  position: sticky; top: 0; z-index: 50;
-  display: grid; grid-template-columns: auto 1fr auto; gap: 16px;
-  align-items: center;
-  height: 72px; padding: 0 20px;
-  background: rgba(255,255,255,0.65);
+  position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+  height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  background: rgba(255,255,255,0.75);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(0,0,0,0.06);
 }
+
 .nav__brand img { height: 44px; width: auto; display: block; }
 
-.nav__menu { display: flex; gap: 24px; justify-content: center; }
+.nav__menu { display: flex; gap: 24px; }
 .nav__menu a {
   text-decoration: none; color:#0b2240; font-weight: 600; letter-spacing:.02em;
   padding: 10px 6px; border-radius: 8px;
@@ -23,18 +28,23 @@ body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-se
 .nav__menu a:hover { background: rgba(0,0,0,.06); }
 
 .nav__actions { display:flex; align-items:center; gap:10px; }
+
 .lang {
   border: 1px solid rgba(0,0,0,.15); background:#fff; color:#0b2240;
   padding:6px 8px; border-radius:8px; font-weight:700; font-size:12px; cursor:pointer;
 }
 .lang:hover { background:#f4f6fb; }
-.search { border:0; background:transparent; color:#0b2240; cursor:pointer; padding:6px; border-radius:8px; }
+
+.search {
+  border:0; background:transparent; color:#0b2240; cursor:pointer;
+  padding:6px; border-radius:8px;
+}
 .search:hover { background: rgba(0,0,0,.06); }
 
 /* Hamburger (mobil) */
 .nav__toggle {
-  display:none; width:44px; height:36px; border:0; background:transparent; cursor:pointer;
-  border-radius:8px; position:relative;
+  display:none; width:44px; height:36px; border:0; background:transparent;
+  cursor:pointer; border-radius:8px; position:relative;
 }
 .nav__toggle span {
   position:absolute; left:10px; right:10px; height:2px; background:#0b2240; transition:.25s;
@@ -46,123 +56,51 @@ body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-se
 .nav__toggle.active span:nth-child(2){ opacity:0; }
 .nav__toggle.active span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
 
-/* HERO */
+/* ========== HERO (tam ekran) ========== */
 .hero {
-  position: relative; min-height: calc(100vh - 72px);
-  background: url("../img/arkaplan2.png") no-repeat right center / cover;
-  /* masaüstünde hafif parallax istersen aç: */
-  /* background-attachment: fixed; */
+  /* nav üstte sabit; hero tüm ekranı kaplar */
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: grid; place-items: center;
+  background: url('../img/arkaplan2.png') center/cover no-repeat;
+  /* arkaplan2 kullanacaksan üst satırdaki dosya adını değiştir */
 }
+
 .hero__overlay {
   position:absolute; inset:0;
-  background:
-    linear-gradient(90deg, rgba(255,255,255,.60), rgba(255,255,255,.10) 40%, rgba(0,0,0,.18));
-  /* metni rahat okumak için yumuşak film */
+  background: rgba(0,0,0,0.35); /* okunabilirlik için hafif karartma */
 }
+
 .hero__inner {
-  position:relative; z-index:1; min-height: inherit;
-  display:grid; place-items:center; text-align:center;
-  padding: 40px 20px;
+  position: relative; z-index: 1;
+  text-align: center; color: #fff; padding: 0 20px;
 }
-.hero__inner h1{
-  margin:0 0 14px; font-weight:800; line-height:1.15;
+
+.hero__inner h1 {
+  margin: 0 0 14px; font-weight: 800; line-height: 1.15;
   font-size: clamp(28px, 4.6vw, 56px);
   text-shadow: 0 2px 22px rgba(0,0,0,.14);
 }
-.hero__inner p{
-  margin:0; font-size: clamp(16px, 2.2vw, 22px); opacity:.92;
+.hero__inner p {
+  margin: 0; font-size: clamp(16px, 2.2vw, 22px); opacity: .92;
 }
 .btn{
   display:inline-block; margin-top:22px; padding:12px 18px; border-radius:999px;
   background:#0b2240; color:#fff; text-decoration:none; font-weight:700;
 }
 
-/* Bölüm örnekleri */
-.section{ padding:80px 20px; max-width:1100px; margin:0 auto; }
-
-/* Mobil */
+/* ========== Mobil ========== */
 @media (max-width: 900px){
-  .nav { grid-template-columns: auto auto auto; }
   .nav__toggle { display:block; }
   .nav__menu {
-    position: absolute; top:72px; left:0; right:0;
-    background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
-    display:none; flex-direction:column; gap:0; border-bottom:1px solid rgba(0,0,0,.06);
+    position: absolute; top:72px; left:0; right:0; display:none;
+    flex-direction: column; gap: 0;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0,0,0,.06);
   }
-  .nav__menu a { padding:14px 20px; }
+  .nav__menu a { padding: 14px 20px; }
   .nav__menu.open { display:flex; }
-  .hero { background-position: center; }  /* mobilde ortala */
-}
-/* Sıfır kenar boşluğu, tam ekran görünüm */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  overflow: hidden; /* scroll bar yok */
-  font-family: 'Inter', sans-serif;
-}
-
-/* Navbar sabit üstte */
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(255,255,255,0.8);
-  backdrop-filter: blur(8px);
-  padding: 0.5rem 1.5rem;
-}
-
-/* Hero bölümü tüm ekranı kaplar */
-.hero {
-  height: 100vh;           /* tam ekran yüksekliği */
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url('../img/arkaplan.png') center/cover no-repeat;
-}
-
-/* karartma efekti */
-.hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.4);
-}
-
-/* yazılar ortada */
-.hero__inner {
-  position: relative;
-  text-align: center;
-  color: #fff;
-  z-index: 2;
-}
-
-.hero__inner h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  margin: 0 0 0.5rem 0;
-}
-
-.hero__inner p {
-  font-size: 1.2rem;
-  opacity: 0.9;
-}
-
-/* Menü toggle ve diğer elemanları gerektiği gibi gizle/göster */
-.nav__menu {
-  display: flex;
-  gap: 1rem;
-}
-
-/* İsteğe bağlı: küçük ekranlarda hero içeriği taşmasın */
-@media (max-width: 768px) {
-  .hero__inner h1 {
-    font-size: 1.8rem;
-  }
+  .hero { background-position: center; } /* mobilde ortala */
 }

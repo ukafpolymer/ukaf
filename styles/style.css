@@ -169,26 +169,42 @@ body {
 
 /* ========== Mobil ========== */
 @media (max-width: 900px){
-  .nav__toggle { display:block; }
+  .nav__toggle { display:block; z-index: 101; }
 
-  /* AÇILAN MENÜ: logonun üstünde, tam genişlik, kaydırılabilir */
+  /* Sağdan kayan menü */
   .nav__menu {
-    position: fixed;          /* absolute yerine fixed */
-    top: 60px;                /* üst barın hemen altı */
-    left: 0;
-    right: 0;
-    display: none;
-    flex-direction: column;
-    gap: 0;
+    position: fixed;
+    top: 0;
+    right: -100%;               /* başlangıçta görünmez */
+    width: 70%;                 /* ekranın %70'i kadar */
+    height: 100vh;
     background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(0,0,0,.06);
-    z-index: 50;              /* logodan daha yukarıda */
-    max-height: calc(100vh - 60px);
-    overflow-y: auto;         /* menü uzun olursa kayabilsin */
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 80px 24px 24px;
+    gap: 18px;
+    border-left: 1px solid rgba(0,0,0,0.06);
+    box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    transition: right .3s ease;
+    z-index: 100;
   }
-  .nav__menu a { padding: 16px 20px; }
-  .nav__menu.open { display:flex; }
 
-  .hero { background-position: center; }
+  .nav__menu.open {
+    right: 0; /* görünür hale gelir */
+  }
+
+  .nav__menu a {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  /* Menü açıkken arka plan sabit */
+  body.menu-open {
+    overflow: hidden;
+  }
 }
+

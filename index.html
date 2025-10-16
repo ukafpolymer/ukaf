@@ -46,19 +46,20 @@
     <div class="hero__inner">
       <h1><span class="blue-text">Supplying Good Chemistry,<br/>Building Great Partnerships</span></h1>
 
-      <p>Trust. Innovate. Deliver..</p>
+      <p>Trust. Innovate. Deliver.</p>
     </div>
   </section>
 
   <script>
-    // Mobil menü toggle
-    const btn = document.querySelector('.nav__toggle');
-    const menu = document.querySelector('.nav__menu');
-    btn.addEventListener('click', () => {
-      btn.classList.toggle('active');
-      menu.classList.toggle('open');
-    });
-  </script>
+  const btn = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('.nav__menu');
+  btn.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('active', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
+  });
+</script>
+
 
 <!-- FOOTER BAR -->
 <footer class="footerbar">

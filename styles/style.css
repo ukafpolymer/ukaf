@@ -190,28 +190,28 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start; /* <── içerik yukarı hizalansın */
-    padding: 60px 24px 40px 24px; /* <── sadece kenar boşlukları, üstte az */
-    gap: 18px;                    /* linkler arası mesafe */
+    justify-content: flex-start;   /* içerik yukarı hizalansın */
+    padding: 0 24px;               /* <── ÜST PADDING SIFIRLANDI */
+    gap: 18px;                     /* linkler arası dikey boşluk */
     border-left: 1px solid rgba(0,0,0,0.06);
     box-shadow: -4px 0 20px rgba(0,0,0,0.1);
     transition: right .3s ease;
     z-index: 100;
   }
 
-  .nav__menu.open {
-    right: 0;
-  }
+  .nav__menu.open { right: 0; }
 
   .nav__menu a {
     width: 100%;
     font-size: 18px;
     font-weight: 600;
     color: #0b2240;
+    padding: 14px 0;               /* küçük dikey alan, okunaklı */
   }
 
   body.menu-open { overflow: hidden; }
 }
+
 
 
 

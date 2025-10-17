@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Products – UKAF Polymer</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <style>
+    /* Products sayfası: beyaz zemin ve kart grid */
+    body { background:#fff; overflow:auto; }
+    .page {
+      padding-top: 120px;   /* logonun altına insin */
+      padding-bottom: 100px;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-left: 60px;   /* soldan daha içeri başlasın */
+      padding-right: 30px;
+    }
+    .lead { color:#475569; margin:0 0 18px; }
+
+    /* 2 sütunlu grid (mobilde 1) */
+    .pg-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:18px;
+    }
+    @media (max-width: 900px){
+      .pg-grid{ grid-template-columns: 1fr; }
+      .page{
+        padding-top: 90px;   /* mobilde daha az boşluk */
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+    /* Grup kartı */
+    .pg {
+      background:#fff; border:1px solid rgba(0,0,0,.08);
+      border-radius:16px; box-shadow:0 8px 24px rgba(2,6,23,.06);
+      overflow:hidden;
+      display:flex; flex-direction:column;
+    }
+    .pg__media{
+      position:relative; aspect-ratio: 16/9; background:#f1f5f9;
+      display:grid; place-items:center;
+    }
+    .pg__img{
+      width:100%; height:100%; object-fit:cover;
+    }
+    .pg__title{
+      margin:0; font-size:22px; line-height:1.2;
+      padding:14px 16px 6px;
+    }
+
+    /* Polymer Type blokları */
+    .pg__body{ padding: 0 16px 16px; }
+    .ptype{
+      background:#f8fafc; border:1px solid rgba(0,0,0,.06);
+      border-radius:14px; padding:12px 14px; margin:12px 0;
+    }
+    .ptype__title{ margin:0 0 8px; font-size:18px; }
+
+    /* Product Type listesi (chip’ler) */
+    .chips{ display:flex; flex-wrap:wrap; gap:8px; }
+    .chip{
+      display:inline-block; padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(0,0,0,.12); background:#fff; font-weight:600;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR (index ile aynı yapı) -->
+  <header class="nav">
+    <a class="nav__brand" href="/"><img src="img/Ukaf_mavi1.png" alt="UKAF Polymer" /></a>
+    <button class="nav__toggle" aria-label="Menüyü aç/kapat"><span></span><span></span><span></span></button>
+    <nav class="nav__menu">
+      <a href="index.html">Home</a>
+      <a href="#" data-modal="about">About Us</a>
+      <a href="product.html" aria-current="page">Products</a>
+      <a href="#" data-modal="contact">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="lang" data-lang="en">EN</button>
+      <button class="lang" onclick="location.href='product-fr.html'">FR</button>
+      <button class="lang" data-lang="tr">TR</button>
+      <button class="search" aria-label="Ara" title="Search">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2" fill="none"/>
+          <line x1="16.5" y1="16.5" x2="22" y2="22" stroke="currentColor" stroke-width="2" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- MODAL altyapısı (About / Contact için) -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal__backdrop"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true">
+      <button class="modal__close" aria-label="Close">×</button>
+      <div id="modal-content" class="modal__content"></div>
+    </div>
+  </div>
+
+  <!-- PAGE CONTENT -->
+  <main class="page">
+    <h1 style="margin:0 0 6px">Products</h1>
+    <p class="lead"></p>
+    <div id="grid" class="pg-grid"></div>
+  </main>
+
+  <!-- FOOTER (index ile aynı) -->
+  <footer class="footerbar">
+    <div class="footerbar__info">
+      <span class="footer-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1114.5 9 2.5 2.5 0 0112 11.5z"/></svg>
+        SG1 4PP Stevenage, Hertfordshire, UK
+      </span>
+      <span class="footer-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21 11.36 11.36 0 003.55.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.55 1 1 0 01-.21 1.11z"/></svg>
+        +44 xxx xxx xxxx
+      </span>
+      <span class="footer-item">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+        <a href="mailto:info@ukafpolymer.co.uk">info@ukafpolymer.co.uk</a>
+      </span>
+    </div>
+    <div class="footerbar__social">
+      <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3A2 2 0 0121 5V19A2 2 0 0119 21H5A2 2 0 013 19V5A2 2 0 015 3H19M8.34 17.34V10.7H5.67V17.34H8.34M7 9.62A1.32 1.32 0 107 6.98A1.32 1.32 0 007 9.62M18.33 17.34V13.65C18.33 11.21 16.56 10.86 15.77 10.86A3.38 3.38 0 0013.16 12.3V10.7H10.49V17.34H13.16V13.93C13.16 12.91 13.84 12.17 14.75 12.17S16.34 12.91 16.34 13.93V17.34H18.33Z"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    /* Hamburger toggle */
+    const btn = document.querySelector('.nav__toggle');
+    const menu = document.querySelector('.nav__menu');
+    btn.addEventListener('click', () => {
+      const isOpen = menu.classList.toggle('open');
+      btn.classList.toggle('active', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
+    });
+
+    /* Modal loader (About / Contact) */
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modal-content');
+    const btnClose = modal.querySelector('.modal__close');
+    function attachModalTriggers() {
+      document.querySelectorAll('[data-modal]').forEach(a => {
+        a.addEventListener('click', async (e) => {
+          e.preventDefault();
+          const id = a.dataset.modal;
+          try { const res = await fetch(id + '.html', {cache:'no-store'});
+                modalContent.innerHTML = await res.text(); openModal();
+          } catch { modalContent.innerHTML = '<div style="padding:20px">Could not load <b>'+id+'</b> page.</div>'; openModal(); }
+        });
+      });
+    }
+    function openModal(){ modal.classList.add('is-open'); document.body.classList.add('menu-open'); }
+    function closeModal(){ modal.classList.remove('is-open'); document.body.classList.remove('menu-open'); modalContent.innerHTML=''; }
+    btnClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', e=>{ if(e.target.classList.contains('modal__backdrop')) closeModal(); });
+    window.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+    attachModalTriggers();
+  </script>
+
+  <script>
+    /* === DATA === */
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/122nNrYsH7mPXPci6Ks8Ree-Cg5hOsdHttOsebX5gm3A/export?format=csv&gid=676223605";
+    const DEFAULT_IMG = "img/group-placeholder.png"; // IMG boşsa kullanılan görsel
+    const grid = document.getElementById('grid');
+
+    /* Başlık eşleşmeleri (TR/EN esnek) */
+    const HEADER_SYNONYMS = {
+      group:   ['polymer group','group','grup'],
+      ptype:   ['polymer type','ptype','type','tip','polimer tipi'],
+      product: ['product type','product','ürün','urun','ürün tipi','urun tipi'],
+      img:     ['img','image','resim','görsel','gorsel','photo','picture']
+    };
+
+    init();
+
+    async function init(){
+      const rows = await fetchCSV(CSV_URL);
+      const structured = structure(rows);   // sheet sırası korunur + grup img eşle
+      render(structured);
+    }
+
+    /* SIRAYI koruyan ve grup görselini IMG’den alan yapı */
+    function structure(rows){
+      const order = [];
+      const tree = {};
+      const images = {}; // group -> img path
+
+      rows.forEach(r=>{
+        const g  = (r.Group || 'Ungrouped').trim();
+        const pt = (r.PolymerType || '—').trim();
+        const pr = (r.ProductType || '—').trim();
+        const im = (r.Img || '').trim();
+
+        if(!tree[g]){
+          tree[g] = { ptypeOrder: [], types: {} };
+          order.push(g);
+        }
+        if(!images[g] && im){
+          images[g] = toImgPath(im);
+        }
+        if(!tree[g].types[pt]){
+          tree[g].types[pt] = [];
+          tree[g].ptypeOrder.push(pt);
+        }
+        if(pr && !tree[g].types[pt].includes(pr)){
+          tree[g].types[pt].push(pr);
+        }
+      });
+
+      return { order, tree, images };
+    }
+
+    function render(structured){
+      const { order, tree, images } = structured;
+      grid.innerHTML = '';
+
+      order.forEach(g=>{
+        const card = document.createElement('section');
+        card.className = 'pg';
+
+        /* Görsel (üstte) */
+        const media = document.createElement('div');
+        media.className = 'pg__media';
+        const img = document.createElement('img');
+        img.className = 'pg__img';
+        img.src = images[g] || DEFAULT_IMG;
+        img.alt = g;
+        media.appendChild(img);
+        card.appendChild(media);
+
+        /* Başlık */
+        const title = document.createElement('h3');
+        title.className = 'pg__title';
+        title.textContent = g;
+        card.appendChild(title);
+
+        /* İçerik: Polymer Type blokları ve chipler */
+        const body = document.createElement('div');
+        body.className = 'pg__body';
+
+        tree[g].ptypeOrder.forEach(pt=>{
+          const wrap = document.createElement('div'); wrap.className='ptype';
+          const h4 = document.createElement('h4'); h4.className='ptype__title'; h4.textContent = pt;
+          const chips = document.createElement('div'); chips.className='chips';
+
+          tree[g].types[pt].forEach(pr=>{
+            const chip = document.createElement('span'); chip.className='chip'; chip.textContent = pr;
+            chips.appendChild(chip);
+          });
+
+          wrap.appendChild(h4);
+          wrap.appendChild(chips);
+          body.appendChild(wrap);
+        });
+
+        card.appendChild(body);
+        grid.appendChild(card);
+      });
+    }
+
+    /* IMG hücresini dosya yoluna çevirir: "pe.jpg" => "img/pe.jpg", URL ise direkt kullanır */
+    function toImgPath(val){
+      const v = (val || '').trim();
+      if(/^https?:\/\//i.test(v)) return v;
+      if(v.startsWith('img/')) return v;
+      return 'img/' + v;
+    }
+
+    /* ---- CSV helpers ---- */
+    async function fetchCSV(url){
+      const res = await fetch(url, {cache:'no-store'});
+      const text = await res.text();
+      const data = parseCSV(text);
+      const headers = data[0] || [];
+      const idx = mapColumns(headers);
+      return data.slice(1)
+        .filter(r => r.some(c => String(c||'').trim()!==''))
+        .map(r => ({
+          Group:       pick(r, idx.group),
+          PolymerType: pick(r, idx.ptype),
+          ProductType: pick(r, idx.product),
+          Img:         pick(r, idx.img)
+        }));
+    }
+    function pick(row, i){ return (i>=0 ? (row[i]||'').trim() : ''); }
+
+    function mapColumns(headers){
+      const norm = headers.map(h => (h||'').trim().toLowerCase());
+      const find = (arr)=> { for(const a of arr){ const i = norm.indexOf(a); if(i!==-1) return i; } return -1; };
+      return {
+        group:  find(HEADER_SYNONYMS.group),
+        ptype:  find(HEADER_SYNONYMS.ptype),
+        product:find(HEADER_SYNONYMS.product),
+        img:    find(HEADER_SYNONYMS.img)
+      };
+    }
+
+    /* basit csv parser (tırnak içi virgül destekli) */
+    function parseCSV(str){
+      const rows=[], row=[]; let cur='', q=false;
+      for(let i=0;i<str.length;i++){
+        const c=str[i], n=str[i+1];
+        if(q){
+          if(c=='"' && n=='"'){ cur+='"'; i++; }
+          else if(c=='"'){ q=false; }
+          else cur+=c;
+        }else{
+          if(c=='"') q=true;
+          else if(c==','){ row.push(cur); cur=''; }
+          else if(c=='\n'){ row.push(cur); rows.push(row.splice(0)); cur=''; }
+          else if(c=='\r'){/*skip*/}
+          else cur+=c;
+        }
+      }
+      if(cur.length || row.length){ row.push(cur); rows.push(row); }
+      return rows;
+    }
+  </script>
+</body>
+</html>
